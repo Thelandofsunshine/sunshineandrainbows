@@ -1,8 +1,11 @@
 //
 //  BTIterator.h
 //
-//  Copyright (c) 2014 Ashley Krueger. All rights reserved.
-//
+//  Created by:
+//	Ashley Krueger (alkruege), Mathew Scott Dexheimer (sdexh, or PickelBarelKumqueat),
+//	Savannah Pucket (snpuckett), Emily Falkner(emfalkne, or emilymarie)
+//	GitHub Url: https://github.com/Thelandofsunshine/sunshineandrainbows
+
 
 #ifndef __SunshineAndRainbows__BTIterator__
 #define __SunshineAndRainbows__BTIterator__
