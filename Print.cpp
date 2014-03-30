@@ -12,6 +12,9 @@
 
 #include "Print.h"
 #include "Token.h"
+#include "BinaryTreeNode.h"
+#include "BTIterator.h"
+#include "LineNumNode.h"
 
 const char* const SYMBOL_STRINGS[] =
 {
@@ -92,4 +95,32 @@ void Print::printToken(Token *token)
             break;
     }
     printLine(line);
+}
+
+void Print::printBT(BinaryTreeNode* head)
+{
+    BinaryTreeNode* current = NULL;
+    BTIterator bti;
+    
+    printf("Cross Reference Information\n");
+    printf("Identifier\t\tLineNumbers\n");
+    printf("------------\t\t-----------\n");
+
+    
+    while (current!=NULL)
+    {
+        
+        printf(current->get_name());
+        printf("\t\t");
+        LineNumNode *num=current->get_lines();
+        printf("%d\t", num->get_number());
+        while(num->get_next()!=NULL)
+        {
+            num->get_next();
+            printf("%d\t", num->get_number());
+        }
+        printf("\n");
+        current=bti.get_next(head,current);
+        
+    }
 }

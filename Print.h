@@ -16,6 +16,9 @@
 #include <iostream>
 #include "common.h"
 #include "Token.h"
+#include "BinaryTreeNode.h"
+#include "BTIterator.h"
+#include "LineNumNode.h"
 
 using namespace std;
 
@@ -34,6 +37,7 @@ public:
     
     void printLine(char line[]);
     void printToken(Token *token);
+    void printBT(BinaryTreeNode* head);
 };
 
 #endif /* defined(__Lab4__Print__) */
