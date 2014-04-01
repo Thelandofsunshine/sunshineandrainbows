@@ -4,11 +4,6 @@
 //
 //  Created by Bryce Holton.
 //
-//  Updated by:
-//	Ashley Krueger (alkruege), Mathew Scott Dexheimer (sdexh, or PickelBarelKumqueat),
-//	Savannah Pucket (snpuckett), Emily Falkner(emfalkne, or emilymarie)
-//	GitHub Url: https://github.com/Thelandofsunshine/sunshineandrainbows
-
 
 #ifndef CSE220_project2_common_h
 #define CSE220_project2_common_h

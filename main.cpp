@@ -4,11 +4,6 @@
 //
 //  Created by Bryce Holton.
 //
-//  Updated by:
-//	Ashley Krueger (alkruege), Mathew Scott Dexheimer (sdexh, or PickelBarelKumqueat), 
-//	Savannah Pucket (snpuckett), Emily Falkner(emfalkne, or emilymarie)
-//	GitHub Url: https://github.com/Thelandofsunshine/sunshineandrainbows
-
 
 #include <iostream>
 #include "common.h"
@@ -20,7 +15,8 @@ FILE *init_lister(const char *name, char source_file_name[], char dte[]);
 void quit_scanner(FILE *src_file, Token *list);
 void add_token_to_list(Token *list, Token *new_token);
 
-int main(int argc, const char * argv[])
+
+int main()//int argc, const char * argv[])
 {
     /******************************************
      This is not a correct implementation, you will need to modfy this
@@ -30,10 +26,10 @@ int main(int argc, const char * argv[])
     Token *token = NULL;
     char source_name[MAX_FILE_NAME_LENGTH];
     char date[DATE_STRING_LENGTH];
-    FILE *source_file = init_lister(argv[1], source_name, date);
+	char *DEBUG = "NEWTON.PAS";
+    FILE *source_file = init_lister(DEBUG, source_name, date);//argv[1], source_name, date);
     Print print(source_name, date);
     Scanner scanner(source_file, source_name, date, print);
-    
     do
     {
         token = scanner.getToken();
@@ -44,11 +40,12 @@ int main(int argc, const char * argv[])
         }
     }
     while (token->getCode() != PERIOD && token->getCode() != END_OF_FILE);
-    
     delete token;
+    print.printBT();
     fclose(source_file);
     return 0;
 }
+
 FILE *init_lister(const char *name, char source_file_name[], char dte[])
 {
     time_t timer;

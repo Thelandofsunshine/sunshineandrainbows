@@ -5,16 +5,13 @@
 //  Created by Bryce Holton.
 //
 //  Updated by:
-//	Ashley Krueger (alkruege), Mathew Scott Dexheimer (sdexh, or PickelBarelKumqueat), 
+//	Ashley Krueger (alkruege), Mathew Scott Dexheimer (PickelBarelKumqueat), 
 //	Savannah Pucket (snpuckett), Emily Falkner(emfalkne, or emilymarie)
 //	GitHub Url: https://github.com/Thelandofsunshine/sunshineandrainbows
 
 
 #include "Print.h"
-#include "Token.h"
-#include "BinaryTreeNode.h"
-#include "BTIterator.h"
-#include "LineNumNode.h"
+
 
 const char* const SYMBOL_STRINGS[] =
 {
@@ -64,6 +61,7 @@ void Print::printLine(char line[])
     {
         *save_chp = save_ch;
     }
+	lc = line_count;
 }
 void Print::printPageHeader()
 {
@@ -95,12 +93,29 @@ void Print::printToken(Token *token)
             break;
     }
     printLine(line);
+	//adds the identifiers to the tree
+	if(token->getCode() == IDENTIFIER)
+	{
+		BTIterator bti;
+		//tries to find the identifier
+		BinaryTreeNode *p = bti.find(head, token->getTokenString().data());
+		if(p)
+		{
+			p->add_line(lc);
+		}
+		else
+		{
+			bti.add(&head, token->getTokenString().data(), lc);
+		}
+	}
 }
 
-void Print::printBT(BinaryTreeNode* head)
+void Print::printBT()
 {
     BinaryTreeNode* current = NULL;
     BTIterator bti;
+	
+    current=bti.get_next(head,current);
     
     printf("Cross Reference Information\n");
     printf("Identifier\t\tLineNumbers\n");
@@ -116,7 +131,7 @@ void Print::printBT(BinaryTreeNode* head)
         printf("%d\t", num->get_number());
         while(num->get_next()!=NULL)
         {
-            num->get_next();
+            num = num->get_next();
             printf("%d\t", num->get_number());
         }
         printf("\n");

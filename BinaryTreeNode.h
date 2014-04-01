@@ -1,9 +1,3 @@
-//  Created by:
-//	Ashley Krueger (alkruege), Mathew Scott Dexheimer (sdexh, or PickelBarelKumqueat),
-//	Savannah Pucket (snpuckett), Emily Falkner(emfalkne, or emilymarie)
-//	GitHub Url: https://github.com/Thelandofsunshine/sunshineandrainbows
-
-
 #ifndef BinaryTreeNode_h
 #define BinaryTreeNode_h
 
@@ -21,6 +15,7 @@ private:
 
 public:
 	BinaryTreeNode(char *nm);
+	BinaryTreeNode(char *nm, int ln);
 	~BinaryTreeNode();
 	
 	//accessors
@@ -31,7 +26,7 @@ public:
 
 	//mutators
 	void set_name(char *nm);
-	void add_line(LineNumNode *line);
+	void add_line(int num);
 	void set_left(BinaryTreeNode *left);
 	void set_right(BinaryTreeNode *right);
 

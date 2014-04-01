@@ -1,15 +1,17 @@
-//  Created by:
-//	Ashley Krueger (alkruege), Mathew Scott Dexheimer (sdexh, or PickelBarelKumqueat),
-//	Savannah Pucket (snpuckett), Emily Falkner(emfalkne, or emilymarie)
-//	GitHub Url: https://github.com/Thelandofsunshine/sunshineandrainbows
-
-
 #include "BinaryTreeNode.h"
 
 BinaryTreeNode::BinaryTreeNode(char *nm)
 {
 	strcpy(name, nm);
 	lines = NULL;
+	left = NULL;
+	right = NULL;
+}
+
+BinaryTreeNode::BinaryTreeNode(char *nm, int ln)
+{
+	strcpy(name, nm);
+	add_line(ln);
 	left = NULL;
 	right = NULL;
 }
@@ -29,20 +31,20 @@ BinaryTreeNode *BinaryTreeNode::get_right()				{return right;}
 void BinaryTreeNode::set_name(char *nm)					{strcpy(name, nm);}
 void BinaryTreeNode::set_left(BinaryTreeNode *lft)		{left =lft;}
 void BinaryTreeNode::set_right(BinaryTreeNode *rght)	{right = rght;}
-void BinaryTreeNode::add_line(LineNumNode *line)
+void BinaryTreeNode::add_line(int num)
 {
 	if(!lines)
 	{
-		lines = line;
+		lines = new LineNumNode(num);
 	}
 	else
 	{
 		LineNumNode *p = lines;
-		while(p)
+		while(p->get_next())
 		{
 			p = p->get_next();
 		}
-		p->set_next(line);
+		p->set_next(new LineNumNode(num));
 	}
 }
 
