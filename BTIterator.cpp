@@ -1,3 +1,8 @@
+//  Created by:
+//	Ashley Krueger (alkruege), Mathew Scott Dexheimer (sdexh, or PickelBarelKumqueat),
+//	Savannah Pucket (snpuckett), Emily Falkner(emfalkne, or emilymarie)
+//	GitHub Url: https://github.com/Thelandofsunshine/sunshineandrainbows
+
 #include "BTIterator.h"
 
 void BTIterator::add(BinaryTreeNode** head, const char *nm, int line_num)
