@@ -9,8 +9,10 @@
 //	Savannah Pucket (snpuckett), Emily Falkner(emfalkne, or emilymarie)
 //	GitHub Url: https://github.com/Thelandofsunshine/sunshineandrainbows
 
+
 #include "Scanner.h"
 #include "Print.h"
+#include <cstdlib>
 
 typedef struct
 {

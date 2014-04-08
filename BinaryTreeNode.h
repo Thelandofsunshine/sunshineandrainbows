@@ -17,6 +17,7 @@ private:
 	BinaryTreeNode *left;
 	BinaryTreeNode *right;
 	void rem_lnn(LineNumNode *n);
+	bool traversed;
 
 public:
 	BinaryTreeNode(char *nm);
@@ -28,10 +29,12 @@ public:
 	LineNumNode *get_lines();
 	BinaryTreeNode *get_left();
 	BinaryTreeNode *get_right();
+	bool get_traversed();
 
 	//mutators
 	void set_name(char *nm);
 	void add_line(int num);
+	void set_traversed(bool t);
 	void set_left(BinaryTreeNode *left);
 	void set_right(BinaryTreeNode *right);
 

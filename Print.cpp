@@ -5,13 +5,14 @@
 //  Created by Bryce Holton.
 //
 //  Updated by:
-//	Ashley Krueger (alkruege), Mathew Scott Dexheimer (sdexh, or PickelBarelKumqueat), 
+//	Ashley Krueger (alkruege), Mathew Scott Dexheimer (PickelBarelKumqueat), 
 //	Savannah Pucket (snpuckett), Emily Falkner(emfalkne, or emilymarie)
 //	GitHub Url: https://github.com/Thelandofsunshine/sunshineandrainbows
 
 
 #include "Print.h"
 
+static int lc;
 
 const char* const SYMBOL_STRINGS[] =
 {
@@ -31,6 +32,8 @@ Print::Print(char source_name[], char date[])
     this->sourceFileName = string(source_name);
     this->currentDate = string(date);
     this->pageNumber = 0;
+	lc = 0;
+	head = NULL;
 }
 Print::~Print()
 {
@@ -61,7 +64,7 @@ void Print::printLine(char line[])
     {
         *save_chp = save_ch;
     }
-	lc = line_count;
+	lc++;
 }
 void Print::printPageHeader()
 {
@@ -72,7 +75,6 @@ void Print::printToken(Token *token)
 {
     char line[MAX_SOURCE_LINE_LENGTH + 32];
     const char *symbol_string = SYMBOL_STRINGS[token->getCode()];
-    
     switch (token->getCode())
     {
         case NUMBER:
@@ -93,6 +95,7 @@ void Print::printToken(Token *token)
             break;
     }
     printLine(line);
+	lc--;
 	//adds the identifiers to the tree
 	if(token->getCode() == IDENTIFIER)
 	{
@@ -118,21 +121,21 @@ void Print::printBT()
     current=bti.get_next(head,current);
     
     printf("Cross Reference Information\n");
-    printf("Identifier\t\tLineNumbers\n");
-    printf("------------\t\t-----------\n");
+    printf("Identifier\tLineNumbers\n");
+    printf("------------\t-----------\n");
 
     
     while (current!=NULL)
     {
         
         printf(current->get_name());
-        printf("\t\t");
+        printf("\t");
         LineNumNode *num=current->get_lines();
-        printf("%d\t", num->get_number());
+        printf("\t%d", num->get_number());
         while(num->get_next()!=NULL)
         {
             num = num->get_next();
-            printf("%d\t", num->get_number());
+            printf("\t%d", num->get_number());
         }
         printf("\n");
         current=bti.get_next(head,current);

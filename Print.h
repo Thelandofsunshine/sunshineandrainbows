@@ -5,7 +5,7 @@
 //  Created by Bryce Holton.
 //
 //  Updated by:
-//	Ashley Krueger (alkruege), Mathew Scott Dexheimer (sdexh, or PickelBarelKumqueat), 
+//	Ashley Krueger (alkruege), Mathew Scott Dexheimer (PickelBarelKumqueat), 
 //	Savannah Pucket (snpuckett), Emily Falkner(emfalkne, or emilymarie)
 //	GitHub Url: https://github.com/Thelandofsunshine/sunshineandrainbows
 
@@ -29,14 +29,13 @@ private:
     string currentDate;
     int pageNumber;
 	BinaryTreeNode *head;
-	int lc;
     
     void printPageHeader();
     
 public:
     Print(char source_name[], char date[]);
     ~Print();
-    
+
     void printLine(char line[]);
     void printToken(Token *token);
     void printBT();

@@ -18,7 +18,7 @@ void BTIterator::add(BinaryTreeNode** head, const char *nm, int line_num)
     {
         while(true)
         {
-            if(strcmp(current->get_name(), name) < 0)
+            if(strcmp(current->get_name(), name) > 0)
             {
                 if(NULL != current->get_left())
                 {
@@ -68,16 +68,11 @@ BinaryTreeNode* BTIterator::get_next(BinaryTreeNode *head, BinaryTreeNode *last)
 	{
 		if(!p->get_left())
 		{
-			if(p->get_right())
-			{
-				p = p->get_right();
-			}
-			else
-			{
-				return p;
-			}
+			p->set_traversed(true);
+			return p;
 		}
 		p = get_leftmost(p);
+		p->set_traversed(true);
 		return p;
 	}
 	if(last == head)
@@ -91,21 +86,34 @@ BinaryTreeNode* BTIterator::get_next(BinaryTreeNode *head, BinaryTreeNode *last)
 			return NULL;
 		}
 		p = get_leftmost(p);
+		p->set_traversed(true);
 		return p;
 	}
 	p = last;
 	pn = p->get_name();
-	if(!p->get_right())
+	while(p->get_traversed())
 	{
-		p = find_parent(p, pn);
-		return p;
+		if(p->get_right())
+		{
+			if(!(p->get_right()->get_traversed()))
+			{
+				p = get_leftmost(p->get_right());
+				p->set_traversed(true);
+				return p;
+			}
+		}
+		if(0 == strcmp(p->get_name(), head->get_name()))
+		{
+			return NULL;
+		}
+		p = find_parent(head, pn);
+		if(NULL == p)
+		{
+			return NULL;
+		}
 	}
-	else
-	{
-		p = p->get_right();
-		p = get_leftmost(p);
-		return p;
-	}
+	p->set_traversed(true);
+	return p;
 }
 
 BinaryTreeNode *BTIterator::find(BinaryTreeNode *head, const char *nm)
@@ -125,7 +133,7 @@ BinaryTreeNode *BTIterator::find(BinaryTreeNode *head, const char *nm)
 			{
 				return current;
 			}
-            if(strcmp(current->get_name(), name) < 0)
+            if(strcmp(current->get_name(), name) > 0)
             {
                 if(NULL != current->get_left())
                 {
@@ -149,12 +157,11 @@ BinaryTreeNode *BTIterator::find(BinaryTreeNode *head, const char *nm)
             }
         }
     }
-
 }
 
 BinaryTreeNode *BTIterator::find_parent(BinaryTreeNode *root, char *target)
 {
-	BinaryTreeNode *current = examin_children(root, target);
+	BinaryTreeNode *current = find_next(root, target);
 	if(current == NULL)
 	{
 		return NULL;
@@ -165,6 +172,10 @@ BinaryTreeNode *BTIterator::find_parent(BinaryTreeNode *root, char *target)
         while(!examin_children(current, target))
         {
 			current = find_next(current, target);
+			if(current == NULL)
+			{
+				return NULL;
+			}
         }
 		return current;
     }

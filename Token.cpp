@@ -10,6 +10,7 @@
 //	GitHub Url: https://github.com/Thelandofsunshine/sunshineandrainbows
 
 #include "Token.h"
+#include <cstdlib>
 
 Token::Token()
 {

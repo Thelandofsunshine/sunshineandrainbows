@@ -20,7 +20,7 @@ void quit_scanner(FILE *src_file, Token *list);
 void add_token_to_list(Token *list, Token *new_token);
 
 
-int main()//int argc, const char * argv[])
+int main(int argc, const char * argv[])
 {
     /******************************************
      This is not a correct implementation, you will need to modfy this
@@ -30,8 +30,7 @@ int main()//int argc, const char * argv[])
     Token *token = NULL;
     char source_name[MAX_FILE_NAME_LENGTH];
     char date[DATE_STRING_LENGTH];
-	char *DEBUG = "NEWTON.PAS";
-    FILE *source_file = init_lister(DEBUG, source_name, date);//argv[1], source_name, date);
+    FILE *source_file = init_lister(argv[1], source_name, date);
     Print print(source_name, date);
     Scanner scanner(source_file, source_name, date, print);
     do
